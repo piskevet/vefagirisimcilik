@@ -50,6 +50,9 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: 1.2px;
+      white-space: normal;
+      overflow: visible;
+      max-width: none;
     }
 
     .header-right {
@@ -175,10 +178,10 @@
     
     .mobile header h1 {
       font-size: 1.1rem;
-      max-width: 40%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      overflow: visible;
+      max-width: none;
+      padding-right: 10px;
     }
     
     .mobile .btn {
@@ -214,8 +217,7 @@
     
     @media (max-width: 500px) {
       .mobile header h1 {
-        font-size: 0.9rem;
-        max-width: 30%;
+        font-size: 1rem;
       }
       
       .mobile .btn {
@@ -231,6 +233,12 @@
       .mobile .form-container {
         margin: 70px 15px;
         padding: 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .mobile .header-right {
+        gap: 8px;
       }
     }
   </style>
