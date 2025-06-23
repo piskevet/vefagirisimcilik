@@ -22,6 +22,14 @@
     position: relative;
   }
 
+  canvas#background-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -79,6 +87,8 @@
   }
 
   main {
+    position: relative;
+    z-index: 1;
     margin: 120px auto 60px auto;
     max-width: 960px;
     padding: 0 30px;
@@ -108,7 +118,7 @@
     font-size: 1.3rem;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     user-select: none;
     text-decoration: none;
     display: inline-flex;
@@ -121,28 +131,95 @@
     background-color: var(--color-accent);
     color: white;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
   }
 
-  @media (max-width: 480px) {
-    h2 {
-      font-size: 2.2rem;
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.95rem;
+    color: #888;
+    user-select: none;
+    margin-top: 60px;
+  }
+
+  /* Mobil stilleri */
+  .mobile header {
+    padding: 12px 15px;
+  }
+  
+  .mobile header h1 {
+    font-size: 1.1rem;
+    max-width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .mobile .btn {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .mobile .logo {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .mobile main {
+    margin: 90px auto 40px auto;
+    padding: 0 20px;
+  }
+  
+  .mobile h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .mobile .gallery-item {
+    min-width: 150px;
+    font-size: 1.1rem;
+    padding: 16px 30px;
+  }
+  
+  @media (max-width: 500px) {
+    .mobile header h1 {
+      font-size: 0.9rem;
+      max-width: 30%;
     }
-    .gallery-item {
-      min-width: 150px;
-      font-size: 1.1rem;
-      padding: 16px 30px;
+    
+    .mobile .btn {
+      padding: 5px 8px;
+      font-size: 0.6rem;
+    }
+    
+    .mobile .logo {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .mobile .gallery-list {
+      gap: 15px;
+    }
+    
+    .mobile .gallery-item {
+      min-width: 120px;
+      padding: 12px 20px;
+      font-size: 1rem;
     }
   }
 </style>
 </head>
 <body>
 
+<canvas id="background-canvas"></canvas>
+
 <header>
   <h1>Vefa Girişimcilik</h1>
   <div class="header-right">
-    <a href="index.html" class="btn"> Ana Sayfa </a>
-    <a href="galeri.html" class="btn"> Galeri </a>
-    <a href="form.html" class="btn"> Katılımcı Formu </a>
+    <a href="index.html" class="btn">Ana Sayfa</a>
+    <a href="galeri.html" class="btn">Galeri</a>
+    <a href="form.html" class="btn">Form</a>
     <img src="fotolar/logo.png" alt="Logo" class="logo">
   </div>
 </header>
@@ -154,6 +231,108 @@
     <a href="fusioncamp26.html" class="gallery-item" role="button">Fusion Camp'26</a>
   </nav>
 </main>
+
+<footer>
+  © 2025 Vefa Girişimcilik | Fusion Camp
+</footer>
+
+<script>
+  // Mobil cihaz tespiti
+  function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  // Mobil cihaz ise body'ye mobile class'ını ekle
+  if (isMobileDevice()) {
+    document.body.classList.add('mobile');
+  }
+
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Shape {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = 20 + Math.random() * 30;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.type = ['circle', 'triangle', 'square'][Math.floor(Math.random() * 3)];
+      this.color = ['#bfa93f', '#d6c761', '#e1db8e', '#e8e299'][Math.floor(Math.random() * 4)];
+      this.rotation = Math.random() * 360;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.2;
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = 0.15;
+
+      switch (this.type) {
+        case 'circle':
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size / 2, 0, 2 * Math.PI);
+          ctx.fill();
+          break;
+
+        case 'triangle':
+          ctx.beginPath();
+          ctx.moveTo(0, -this.size / 2);
+          ctx.lineTo(this.size / 2, this.size / 2);
+          ctx.lineTo(-this.size / 2, this.size / 2);
+          ctx.closePath();
+          ctx.fill();
+          break;
+
+        case 'square':
+          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+          break;
+      }
+      ctx.restore();
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.rotation += this.rotationSpeed;
+
+      if (this.x < -this.size) this.x = width + this.size;
+      else if (this.x > width + this.size) this.x = -this.size;
+
+      if (this.y < -this.size) this.y = height + this.size;
+      else if (this.y > height + this.size) this.y = -this.size;
+    }
+  }
+
+  const shapes = [];
+  const shapeCount = 40;
+
+  for (let i = 0; i < shapeCount; i++) {
+    shapes.push(new Shape());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    shapes.forEach(shape => {
+      shape.update();
+      shape.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
 
 </body>
 </html>
