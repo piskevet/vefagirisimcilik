@@ -61,6 +61,9 @@
     font-weight: 700;
     font-size: 1.8rem;
     letter-spacing: 1.2px;
+    white-space: normal;
+    overflow: visible;
+    max-width: none;
   }
 
   .header-right {
@@ -176,17 +179,17 @@
     user-select: none;
   }
 
-  /* Mobil cihazlar için CSS */
+  /* Mobil stilleri */
   .mobile header {
     padding: 12px 15px;
   }
   
   .mobile header h1 {
     font-size: 1.1rem;
-    max-width: 40%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    max-width: none;
+    padding-right: 10px;
   }
   
   .mobile .btn {
@@ -237,8 +240,7 @@
   
   @media (max-width: 500px) {
     .mobile header h1 {
-      font-size: 0.9rem;
-      max-width: 30%;
+      font-size: 1rem;
     }
     
     .mobile .btn {
@@ -251,6 +253,12 @@
       height: 30px;
     }
   }
+
+  @media (max-width: 400px) {
+    .mobile .header-right {
+      gap: 8px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -261,7 +269,7 @@
   <h1>Vefa Girişimcilik</h1>
   <div class="header-right">
     <a href="galeri.html" class="btn">Galeri</a>
-    <a href="form.html" class="btn">Katılımcı Formu</a>
+    <a href="form.html" class="btn">Form</a>
     <img src="fotolar/logo.png" alt="Logo" class="logo">
   </div>
 </header>
