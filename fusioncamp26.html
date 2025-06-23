@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>FusionCamp 26 Galerisi</title>
+  <link rel="icon" type="image/png" href="fotolar/favicon.png" />
+<style>
+  /* Genel stiller */
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+  }
+
+  /* HEADER */
+  :root {
+    --color-primary: #bfa93f;
+    --color-accent: #d6c761;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1100;
+  }
+
+  header .left {
+    font-weight: 700;
+    font-size: 1.4rem;
+    user-select: none;
+  }
+
+  header .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  header .right a {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 10px 22px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    user-select: none;
+    border: 2px solid transparent;
+    font-size: 1rem;
+  }
+
+  header .right a:hover {
+    background-color: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  header .logo {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+    user-select: none;
+  }
+
+  /* Galeri başlığı */
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  /* Galeri alanı */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .gallery img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Modal stilleri */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1500; /* header'dan yüksek */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding-top: 70px; /* Header yüksekliği kadar boşluk */
+    box-sizing: border-box;
+  }
+
+  .modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: calc(80% - 70px); /* padding-top kadar azaltıldı */
+    border-radius: 10px;
+  }
+
+  .modal-close {
+    position: fixed; /* fixed yapıldı */
+    top: 15px; /* header'ın altına konumlandırıldı */
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1600; /* modal'dan yüksek */
+  }
+
+  .arrow {
+    position: fixed; /* fixed yapıldı */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 60px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1600;
+  }
+
+  .arrow.left {
+    left: 40px;
+  }
+
+  .arrow.right {
+    right: 40px;
+  }
+
+  /* İndirme butonu */
+  .download-btn {
+    position: absolute;
+    top: 6px;
+    right: 80px;
+    color: white;
+    background-color: #007bff00;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 28px; /* Emoji büyüklüğü */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    z-index: 1001;
+  }
+
+  @media (max-width: 600px) {
+    .gallery img {
+      width: 100px;
+    }
+
+    .arrow {
+      font-size: 40px;
+    }
+
+    .modal-close {
+      font-size: 30px;
+      right: 20px;
+      top: 10px;
+    }
+
+    .download-btn {
+      font-size: 22px;
+      top: 10px;
+      right: 90px;
+      padding: 8px 12px;
+    }
+
+    header {
+      padding: 8px 15px;
+    }
+
+    header .right {
+      gap: 12px;
+    }
+
+    header .right a {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+
+    header .logo {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="left">Vefa Girişimcilik</div>
+    <nav class="right">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="form.html">Katılımcı Formu</a>
+      <img class="logo" src="fotolar/favicon.png" alt="Girişimcilik Logosu" />
+    </nav>
+  </header>
+
+  <h1>FusionCamp 26 Galerisi</h1>
+  <div class="gallery" id="gallery26"></div>
+
+  <!-- Modal -->
+  <div id="imageModal" class="modal" aria-modal="true" role="dialog" aria-label="Büyütülmüş fotoğraf görüntüleme">
+    <span class="modal-close" id="closeModal" role="button" tabindex="0" aria-label="Kapat">&times;</span>
+    <span class="arrow left" id="prevArrow" role="button" tabindex="0" aria-label="Önceki fotoğraf">&#10094;</span>
+    <img class="modal-content" id="modalImage" alt="Büyütülmüş fotoğraf" />
+    <span class="arrow right" id="nextArrow" role="button" tabindex="0" aria-label="Sonraki fotoğraf">&#10095;</span>
+    <a id="downloadBtn" class="download-btn" download target="_blank" title="Fotoğrafı indir" aria-label="Fotoğrafı indir">📥</a>
+  </div>
+
+<script>
+  let images = [];
+  let currentIndex = 0;
+
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.getElementById('closeModal');
+  const prevArrow = document.getElementById('prevArrow');
+  const nextArrow = document.getElementById('nextArrow');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  fetch('/api/gallery/fusioncamp26')
+    .then(response => response.json())
+    .then(data => {
+      images = data;
+      const container = document.getElementById('gallery26');
+
+      images.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = "FusionCamp26 Fotoğrafı";
+        img.addEventListener('click', () => openModal(index));
+        container.appendChild(img);
+      });
+    });
+
+  function openModal(index) {
+    currentIndex = index;
+    modalImg.src = images[currentIndex];
+    downloadBtn.href = images[currentIndex];
+    downloadBtn.download = images[currentIndex].split('/').pop();
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modalImg.src = '';
+    downloadBtn.href = '';
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex];
+    downloadBtn.href = images[currentIndex];
+    downloadBtn.download = images[currentIndex].split('/').pop();
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex];
+    downloadBtn.href = images[currentIndex];
+    downloadBtn.download = images[currentIndex].split('/').pop();
+  }
+
+  closeBtn.onclick = closeModal;
+  prevArrow.onclick = showPrev;
+  nextArrow.onclick = showNext;
+
+  // Boş alana tıklayarak kapatma
+  window.onclick = function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  };
+
+  // Klavye ile yön tuşlarını kullanma
+  document.addEventListener('keydown', (e) => {
+    if (modal.style.display === 'block') {
+      if (e.key === 'ArrowLeft') showPrev();
+      else if (e.key === 'ArrowRight') showNext();
+      else if (e.key === 'Escape') closeModal();
+    }
+  });
+</script>
+
+</body>
+</html>

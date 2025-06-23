@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Paneli</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    async function getir() {
+      const res = await fetch('/veriler');
+      const data = await res.json();
+      const tablo = document.getElementById('tablo');
+      tablo.innerHTML = '<tr><th>Ad Soyad</th><th>Email</th><th>Okul</th><th>Sınıf</th></tr>';
+      data.forEach(v => {
+       tablo.innerHTML += `<tr>
+       <td>${v.adSoyad}</td>
+       <td>${v.email}</td>
+       <td>${v.okul}</td>
+       <td>${v.sinif}</td>
+      </tr>`;
+});
+
+    }
+    window.onload = getir;
+  </script>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>Admin Paneli</h1>
+    <table id="tablo"></table>
+  </div>
+</body>
+</html>

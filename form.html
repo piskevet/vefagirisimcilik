@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fusion Camp'26 Form</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .bilgilendirme {
+      font-size: 0.9rem;
+      color: #777; /* Gri ton */
+      margin-top: 8px;
+      text-align: left;
+      font-style: italic;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="form-container">
+    <h1>Fusion Camp'26 Kayıt Formu</h1>
+    <form action="/gonder" method="POST">
+      <label>Ad Soyad:</label>
+      <input type="text" name="adSoyad" required>
+
+      <label>Hangi Okul?</label>
+      <input type="text" name="okul" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <p>Kaçıncı Sınıfsın?</p>
+      <label><input type="radio" name="sinif" value="Hazırlık" required> Hazırlık</label><br>
+      <label><input type="radio" name="sinif" value="9"> 9</label><br>
+      <label><input type="radio" name="sinif" value="10"> 10</label><br>
+      <label><input type="radio" name="sinif" value="11"> 11</label><br>
+      <label><input type="radio" name="sinif" value="12"> 12</label><br>
+
+      <p class="bilgilendirme">
+      *En kısa sürede mail yoluyla mülakat tarihiniz gönderilecektir.<br>    
+      *Maillerinizi kontrol etmeyi unutmayınız.
+      </p>
+
+      <button type="submit">Kaydet</button>
+    </form>
+  </div>
+</body>
+</html>

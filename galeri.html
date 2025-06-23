@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Galeriler - Vefa Girişimcilik</title>
+<link rel="icon" type="image/png" href="fotolar/favicon.png" />
+<style>
+  :root {
+    --color-primary: #bfa93f;
+    --color-accent: #d6c761;
+    --color-bg: #f7f5e6;
+    --color-text: #4a432a;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--color-bg);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 2;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+  }
+
+  .btn {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 10px 22px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+
+  .btn:hover {
+    background-color: var(--color-accent);
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  main {
+    margin: 120px auto 60px auto;
+    max-width: 960px;
+    padding: 0 30px;
+    text-align: center;
+  }
+
+  h2 {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+
+  .gallery-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+  }
+
+  .gallery-item {
+    background-color: white;
+    color: var(--color-primary);
+    border-radius: 30px;
+    padding: 20px 40px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+  }
+
+  .gallery-item:hover {
+    background-color: var(--color-accent);
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 2.2rem;
+    }
+    .gallery-item {
+      min-width: 150px;
+      font-size: 1.1rem;
+      padding: 16px 30px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vefa Girişimcilik</h1>
+  <div class="header-right">
+    <a href="index.html" class="btn"> Ana Sayfa </a>
+    <a href="galeri.html" class="btn"> Galeri </a>
+    <a href="form.html" class="btn"> Katılımcı Formu </a>
+    <img src="fotolar/logo.png" alt="Logo" class="logo">
+  </div>
+</header>
+
+<main>
+  <h2>Galeriler</h2>
+  <nav class="gallery-list" aria-label="Galeri seçenekleri">
+    <a href="fusioncamp25.html" class="gallery-item" role="button">Fusion Camp'25</a>
+    <a href="fusioncamp26.html" class="gallery-item" role="button">Fusion Camp'26</a>
+  </nav>
+</main>
+
+</body>
+</html>

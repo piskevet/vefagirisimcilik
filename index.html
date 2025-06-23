@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fusion Camp | Vefa Girişimcilik</title>
+<link rel="icon" type="image/png" href="fotolar/favicon.png" />
+<style>
+  :root {
+    --color-primary: #bfa93f;
+    --color-accent: #d6c761;
+    --color-bg: #f7f5e6;
+    --color-text: #4a432a;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--color-bg);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  canvas#background-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 80px auto 100px auto;
+    background: white;
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.07);
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 2;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+  }
+
+  .btn {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 10px 22px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+
+  .btn:hover {
+    background-color: var(--color-accent);
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  h2 {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    color: var(--color-text);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .section {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    padding: 20px;
+  }
+
+  .section:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .section img {
+    width: 50%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .section img:hover {
+    transform: scale(1.03);
+  }
+
+  .section .text {
+    flex: 1;
+  }
+
+  .section .text h3 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--color-primary);
+  }
+
+  .section .text p {
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .center-highlight {
+    background: var(--color-accent);
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    padding: 50px 40px;
+    margin-bottom: 80px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.95rem;
+    color: #888;
+    user-select: none;
+  }
+
+  @media (max-width: 800px) {
+    .section {
+      flex-direction: column !important;
+    }
+    .section img {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .logo {
+      width: 45px;
+      height: 45px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="background-canvas"></canvas>
+
+<header>
+  <h1>Vefa Girişimcilik</h1>
+  <div class="header-right">
+    <a href="galeri.html" class="btn"> Galeri </a>
+    <a href="form.html" class="btn"> Katılımcı Formu  </a>
+    <img src="fotolar/logo.png" alt="Logo" class="logo">
+  </div>
+</header>
+
+<div class="container">
+  <h2>Fusion Camp'26</h2>
+  <p>
+    Hayalini kurduğun girişimi başlatmak için ilk adımı at! <br />
+    Fusion Camp, Vefa Girişimcilik tarafından düzenlenen ilham verici, dopdolu bir girişimcilik kampı.
+  </p>
+
+  <section class="section">
+    <img src="fotolar/calisma.jpg" alt="Ekip Çalışması" />
+    <div class="text">
+      <h3>💡 Fikirden Uygulamaya</h3>
+      <p>
+        Katılımcılar, ekipleriyle birlikte bir fikir geliştirip hayata geçirecek. <br />
+        Deneyimli mentorlar eşliğinde projeni şekillendir!
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <img src="fotolar/baskan.jpg" alt="Etkinlik Anısı" />
+    <div class="text">
+      <h3>📸 Geçmiş Etkinlikten Kareler</h3>
+      <p>
+        Geçen yılki etkinliğimizde 100+ katılımcı unutulmaz anılar biriktirdi. <br />
+        Bu yıl daha fazlası için hazırız!
+      </p>
+    </div>
+  </section>
+
+  <section class="center-highlight">
+    <h3>🚀 Girişimcilik Seninle Başlar</h3>
+    <p>
+      Hayal et, tasarla, sun! Fusion Camp, bir hafta sonuna sığan girişimcilik yolculuğudur. <br />
+      Takım kur, fikir üret ve potansiyelini ortaya çıkar.
+    </p>
+  </section>
+
+  <section class="section">
+    <img src="fotolar/kutlama.jpg" alt="Ödül Anı" />
+    <div class="text">
+      <h3>🏆 Ödüllü Final</h3>
+      <p>
+        Kamp sonunda projeler jüriye sunulacak ve en yaratıcı ekip ödüllerle taçlandırılacak. <br />
+        Hem kazan hem eğlen!
+      </p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © 2025 Vefa Girişimcilik | Fusion Camp
+</footer>
+
+<script>
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Shape {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = 20 + Math.random() * 30;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.type = ['circle', 'triangle', 'square'][Math.floor(Math.random() * 3)];
+      this.color = ['#bfa93f', '#d6c761', '#e1db8e', '#e8e299'][Math.floor(Math.random() * 4)];
+      this.rotation = Math.random() * 360;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.2;
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = 0.15;
+
+      switch (this.type) {
+        case 'circle':
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size / 2, 0, 2 * Math.PI);
+          ctx.fill();
+          break;
+
+        case 'triangle':
+          ctx.beginPath();
+          ctx.moveTo(0, -this.size / 2);
+          ctx.lineTo(this.size / 2, this.size / 2);
+          ctx.lineTo(-this.size / 2, this.size / 2);
+          ctx.closePath();
+          ctx.fill();
+          break;
+
+        case 'square':
+          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+          break;
+      }
+      ctx.restore();
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.rotation += this.rotationSpeed;
+
+      if (this.x < -this.size) this.x = width + this.size;
+      else if (this.x > width + this.size) this.x = -this.size;
+
+      if (this.y < -this.size) this.y = height + this.size;
+      else if (this.y > height + this.size) this.y = -this.size;
+    }
+  }
+
+  const shapes = [];
+  const shapeCount = 40;
+
+  for (let i = 0; i < shapeCount; i++) {
+    shapes.push(new Shape());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    shapes.forEach(shape => {
+      shape.update();
+      shape.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
+</body>
+</html>
